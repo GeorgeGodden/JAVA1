@@ -7,7 +7,7 @@ import java.io.IOException;
  * Created by golde on 28/03/2017.
  */
 public class Booking {
-    File file = new File("C:\\Users\\golde\\OneDrive - South Gloucestershire and Stroud COllege\\College\\Unit 20 event driven programming\\ass 1\\JAVA 1\\src\\Bin\\Booking.txt");
+    File file = new File("Booking.txt");
 
     int[][] aryBooking = new int[32][8]; //creates an array that it 32 rows down and 8 rows across
     //this creates a scanner, this is used to take input from the user
@@ -16,6 +16,7 @@ public class Booking {
         aryBooking[month][roomNumber] = 1;
         //this stores the number 1 in the selected day and room number
 
+        //I want it to read the array that already exists first then do what is below
         try {
             if(!file.exists()){
                 file.createNewFile();
