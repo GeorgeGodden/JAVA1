@@ -1,7 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by golde on 28/03/2017.
@@ -11,7 +8,7 @@ public class Booking {
 
     int[][] aryBooking = new int[32][8]; //creates an array that it 32 rows down and 8 rows across
     //this creates a scanner, this is used to take input from the user
-    public void booking(int month, int roomNumber){
+    public void booking(int month, int roomNumber)  {
 
         aryBooking[month][roomNumber] = 1;
         //this stores the number 1 in the selected day and room number
@@ -25,7 +22,7 @@ public class Booking {
             try (BufferedWriter bw = new BufferedWriter(array)) {
                 for (int i =0; i < aryBooking.length;i++){
                     for (int j =0; j < aryBooking[i].length;j++){
-                        bw.write(aryBooking[i][j] + ", ");
+                        bw.write(aryBooking[i][j] + ", " );
                     }
                     bw.write("\n");
                 }
