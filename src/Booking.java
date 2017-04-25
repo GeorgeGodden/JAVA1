@@ -28,10 +28,10 @@ public class Booking {
             while ((sCurrentLine = br.readLine()) != null ) {
                 i++;
                 String[] aryFill = sCurrentLine.split(", ");
-                for (int x = 0; x < aryFill.length; x++){
+                for (int x = 0; x < aryFill.length - 1; x++){
                     String A = aryFill[x];
                     int B = Integer.parseInt(A);
-                    aryBooking[i][x] = B;
+                    aryBooking[x][i] = B;
                 }
                 //System.out.println(sCurrentLine);
                 //System.out.println(aryFill);
@@ -49,9 +49,7 @@ public class Booking {
                 ex.printStackTrace();
             }
         }
-
-
-            /*try {
+            try {
                 if (!file.exists()) {
                     file.createNewFile();
                 }
@@ -70,7 +68,7 @@ public class Booking {
 
             } catch (IOException e) {
                 e.printStackTrace();
-            }*/
+            }
 
             for (int row = 0; row < 32; row++) {
                 for (int column = 0; column < 8; column++) {
@@ -81,7 +79,7 @@ public class Booking {
     public void checkBooking(int month, int roomNumber){
 
         if(aryBooking[month][roomNumber] == 1){
-            System.out.println("Unfortunatly you cannot have this room");
+            System.out.println("Unfortunately you cannot have this room");
 
         }else{
             System.out.println("this room can be yours");
