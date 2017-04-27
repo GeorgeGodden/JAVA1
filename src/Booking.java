@@ -24,15 +24,16 @@ public class Booking {
             br = new BufferedReader(fr);
             String sCurrentLine;
             br = new BufferedReader(new FileReader(File));
-            int i = 0;
+            int c = 0;
             while ((sCurrentLine = br.readLine()) != null ) {
-                i++;
+
                 String[] aryFill = sCurrentLine.split(", ");
-                for (int x = 0; x < aryFill.length - 1; x++){
+                for (int x = 0; x < aryFill.length; x++){
                     String A = aryFill[x];
                     int B = Integer.parseInt(A);
-                    aryBooking[x][i] = B;
+                    aryBooking[c][x] = B;
                 }
+                c++;
                 //System.out.println(sCurrentLine);
                 //System.out.println(aryFill);
 
@@ -76,7 +77,7 @@ public class Booking {
                 }
             }
         }
-    public void checkBooking(int month, int roomNumber){
+        public void checkBooking(int month, int roomNumber){
 
         if(aryBooking[month][roomNumber] == 1){
             System.out.println("Unfortunately you cannot have this room");

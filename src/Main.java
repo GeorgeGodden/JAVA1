@@ -5,6 +5,8 @@ import java.util.Scanner;
  */
 public class Main {
 
+    Booking booking = new Booking();
+
     public static void main(String[] args){
         Main menu = new Main();
         Scanner n = new Scanner(System.in);
@@ -46,7 +48,6 @@ public class Main {
         //this is a switch case statement, depending on what the answer was from the last menu it gives the user
         // the appropriate choice of room numbers
         int roomNumber = input.nextInt();
-        Booking booking = new Booking();
         if(i == 1) {
             booking.booking(month, roomNumber);
         }else if(i == 2){
