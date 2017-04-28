@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Scanner;
 
 /**
  * Created by golde on 28/03/2017.
@@ -9,13 +10,16 @@ public class Booking {
 
     int[][] aryBooking = new int[32][8]; //creates an array that it 32 rows down and 8 rows across
     //this creates a scanner, this is used to take input from the user
-    public void booking(int month, int roomNumber)  {
-
-        aryBooking[month][roomNumber] = 1;
+    public void booking(int month, int roomNumber, int duration) {
+        int day = month;
+        for(int counter = 0; counter < duration; counter++) {
+            month = day + counter;
+            aryBooking[month][roomNumber] = 1;
+        }
         //this stores the number 1 in the selected day and room number
-
-        //I want it to read the array that already exists first then do what is below
-
+        write();
+    }
+    public void read(int month, int roomNumber, int duration){
         BufferedReader br = null;
         FileReader fr = null;
 
@@ -50,40 +54,57 @@ public class Booking {
                 ex.printStackTrace();
             }
         }
-            try {
-                if (!file.exists()) {
-                    file.createNewFile();
-                }
-                FileWriter array = new FileWriter(file.getAbsoluteFile());
-                try (BufferedWriter bw = new BufferedWriter(array)) {
-                    for (int i = 0; i < aryBooking.length; i++) {
-                        for (int j = 0; j < aryBooking[i].length; j++) {
-                            bw.write(aryBooking[i][j] + ", ");
-                        }
-                        bw.write("\n");
-                    }
-                    bw.close();
-                    System.out.println("your array was saved");
-                }
-                array.close();
+        checkBooking(month, roomNumber, duration);
+    }
 
-            } catch (IOException e) {
-                e.printStackTrace();
+    public void write() {
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
             }
-
-            for (int row = 0; row < 32; row++) {
-                for (int column = 0; column < 8; column++) {
-                    System.out.print(aryBooking[row][column] + "\t");
+            FileWriter array = new FileWriter(file.getAbsoluteFile());
+            try (BufferedWriter bw = new BufferedWriter(array)) {
+                for (int c = 0; c < aryBooking.length; c++) {
+                    for (int x = 0; x < aryBooking[c].length; x++) {
+                        bw.write(aryBooking[c][x] + ", ");
+                    }
+                    bw.write("\n");
                 }
+                bw.close();
+                System.out.println("your array was saved");
+            }
+            array.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (int row = 0; row < 32; row++) {
+            for (int column = 0; column < 8; column++) {
+                System.out.print(aryBooking[row][column] + "\t");
             }
         }
-        public void checkBooking(int month, int roomNumber){
+    }
 
-        if(aryBooking[month][roomNumber] == 1){
-            System.out.println("Unfortunately you cannot have this room");
 
-        }else{
-            System.out.println("this room can be yours");
+        public void checkBooking(int month, int roomNumber, int duration){
+        Scanner a = new Scanner(System.in);
+        Main main = new Main();
+        int day = month;
+        for(int counter = 0; counter < duration; counter++){
+            month = day+counter;
+            if(aryBooking[month][roomNumber]==1){
+                System.out.println("Unfortunatly you cannot have room " + roomNumber + "on " + counter + "\nday however you can have it for every day before that");
+            }else{
+                System.out.println("This room can be yours would you like it? \n1. Yes \n2. No");
+                int A = a.nextInt();
+                if(A == 1){
+                    booking(month, roomNumber, duration);
+                }else{
+                    main.menu();
+                }
+            }
+
         }
 //load array from text file and check specific dates use if statements to get it to output
     }
